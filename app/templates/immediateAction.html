@@ -1,17 +1,21 @@
 {% block immediateAction %}
+
 	<h4>Immediate Action</h4>
 
-	<div class="row">
-		<div class="span4"
-			<form action="On" method="get" name="On">
-				<p><input type="submit" value="On" /></p>
-			</form>
+	<div class="row center">
+		
+		<div class="col s6">
+ 			<a href="/On" id="immediate-on-btn" class="btn-large waves-effect waves-light green">On</a>
 		</div>
 
-		<div class="span4 offset1">
-			<form action="Off" method="get" name="Off">
-				<p><input type="submit" value="Off" /></p>
-			</form>
+		<div class="col s6">
+			<a href="/Off" id="immediate-off-btn" class="btn-large waves-effect waves-light red">Off</a>
 		</div>
+
+		
 	</div>
+
+
+
+	
 {% endblock %}
