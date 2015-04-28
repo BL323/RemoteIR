@@ -1,3 +1,69 @@
 {% block scheduler %}
 	<h4 class="light-blue-text">Scheduler Block</h4>
+
+
+	 		<ul class="collapsible" data-collapsible="accordion">
+			    <li>
+			      <div class="collapsible-header"><i class="mdi-content-add"></i>Add Task</div>
+			      <div class="collapsible-body">
+			      		<p>
+				      		<div class="row">
+				      			<div class="col s3 offset-s1">
+				      				Action
+				      			</div>
+				      			<div class="col s4"> 
+				      				Date Time
+				      			</div>
+				      			<div class="col s1">      				
+				      			</div>
+				      		</div>
+				      		<div class="row">
+				      			<div class="col s3 offset-s1">
+				      				Action
+				      			</div>
+				      			<div class="col s4"> 
+				      				12/03/15 12:23PM
+				      			</div>
+				      			<div class="col s1">
+				       				<a class="btn-floating btn-small waves-effect waves-light red">
+    								<i class="mdi-content-clear"></i> </a>
+				      			</div>
+				      		</div>
+			      		</p>
+			      </div>
+			    </li>
+	   		</ul>
+
+
+	<table class="hoverable">
+        <thead>
+          <tr>
+              <th data-field="action">Action</th>
+              <th data-field="datetTime">DateTime</th>
+              <th data-field="hasRan">Has Ran</th>
+              <th data-field="removeTask"></th>
+          </tr>
+        </thead>
+
+        <tbody>
+
+        {% for task in tasks %}
+
+          <tr>
+            <td>{{ task.action }}</td>
+            <td>{{ task.time }} </td>
+            <td>{{ task. hasRan }}</td>
+            <td>
+   				<a class="btn-floating btn-small waves-effect waves-light red">
+    			<i class="mdi-content-clear"></i>
+  				</a>
+            </td>
+          </tr>
+
+
+          {% endfor %}
+
+        </tbody>
+      </table>
+
 {% endblock %}
