@@ -17,3 +17,8 @@ def immediateActionOn():
 def immediateActionOff():
 	PiOff()
 	return redirect("/index", code=302)
+
+@app.route('/AddTask', methods=['GET', 'POST'])
+def addTaskToDB():
+	GetAllTasks()
+	return redirect("/index", code=302)
