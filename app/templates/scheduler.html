@@ -7,34 +7,7 @@
 			      <div class="collapsible-header"><i class="mdi-content-add"></i>Add Task</div>
 			      <div class="collapsible-body">
 			
-					<form method="post" action="/AddTask">
-				      	<div class="row">		      		
-						 <div class="input-field col s3 offset-s1">
-						    <select>
-						      <option value="1">ON</option>
-						      <option value="2">OFF</option>
-						    </select>
-						  </div>
-						</div>
-
-						<div class="row">
-						  <div class="col s3 offset-s1">
-						  	  <input type="date" class="datepicker" />
-						  </div>
-						  <div class="col s4"> 
-						   <p class="range-field">
-						      <input type="range" id="test5" min="0" max="24" />
-						    </p>
-						  </div>
-						</div>
-
-						<div class="row">
-						  <div class="col s3 offset-s1">
-						  	<input type="submit" />
-						  </div>
-						</div>
-
-					</form>
+						{% include "AddTaskForm.html" %}
 
 			    </li>
 	   		</ul>
@@ -59,7 +32,7 @@
             <td>{{ task.time }} </td>
             <td>{{ task. hasRan }}</td>
             <td>
-   				<a class="btn-floating btn-small waves-effect waves-light red">
+   				<a href="/RemoveTask?{{task.id}}" class="btn-floating btn-small waves-effect waves-light red">
     			<i class="mdi-content-clear"></i>
   				</a>
             </td>

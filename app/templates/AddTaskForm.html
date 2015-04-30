@@ -1,0 +1,11 @@
+<form action="/AddTask" method="post" name="">
+{{ form.hidden_tag() }}
+	<p>
+	Action:<br>
+		{{ form.action(size=80) }}<br>
+	DateTime:
+		{{ form.dateTime }}
+	</p>
+
+	<p><input type="submit" value="Add Task"></p>
+</form>
