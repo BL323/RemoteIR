@@ -2,10 +2,14 @@
 {{ form.hidden_tag() }}
 	<p>
 	Action:<br>
-		{{ form.action(size=80) }}<br>
-	DateTime:
-		{{ form.dateTime }}
+		{{ form.action }}<br>
 	</p>
+	<p>
+	<input name="date" value="{{ d }}" type="date" class="datepicker">
 
+	<p>
+	Time (HH:MM):
+		{{ form.hour }}
+	<p>
 	<p><input type="submit" value="Add Task"></p>
 </form>

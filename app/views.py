@@ -1,4 +1,4 @@
-from flask import render_template, redirect, flash
+from flask import render_template, redirect, flash, request
 import datetime
 from app import app, db, models
 from PiController import *
@@ -24,14 +24,17 @@ def immediateActionOff():
 @app.route('/AddTask', methods=['GET', 'POST'])
 def addTaskToDB():
 	form = AddTaskForm()
+
 	if form.validate_on_submit():
-		print form.action.data
-		t = models.Task(action='ON', time=datetime.datetime.now(),hasRan=False)
+		print request.form['date']
+		dt = GetDateTime(request.form['date'], form.hour.data)
+		t = models.Task(action=form.action.data, time=dt,hasRan=False)
 		AddTask(t)
 
 	return redirect("/index", code=302)
 
 @app.route('/RemoveTask')
 def removeTaskFromDB():
-	
+	taskId = request.args.get('tid')
+	DeleteTask(taskId)
 	return redirect("/index", code=302)
