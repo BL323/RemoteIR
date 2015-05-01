@@ -26,12 +26,16 @@ def addTaskToDB():
 	form = AddTaskForm()
 
 	if form.validate_on_submit():
-		print request.form['date']
 		dt = GetDateTime(request.form['date'], form.hour.data)
-		t = models.Task(action=form.action.data, time=dt,hasRan=False)
-		AddTask(t)
 
-	return redirect("/index", code=302)
+		if dt is None:
+			return render_template("error.html")
+		else:			
+			t = models.Task(action=form.action.data, time=dt,hasRan=False)
+			AddTask(t)
+			return redirect("/index", code=302)
+	else:
+		return render_template("error.hmtl")
 
 @app.route('/RemoveTask')
 def removeTaskFromDB():
