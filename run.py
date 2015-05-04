@@ -9,3 +9,7 @@ t.start()
 print "Started polling"
 app.run(debug = True, host="0.0.0.0")
 print "Started server"
+
+@app.teardown_appcontext
+def shutdown_session(exception=None):
+	app.db_session.remove()

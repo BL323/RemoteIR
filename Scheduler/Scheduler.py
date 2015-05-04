@@ -20,23 +20,34 @@ class Task(declarative_base()):
 	def __repr__(self):
 		return '<Task: %r @ %r>' % (self.action, self.time)
 
-def LoopChecker(session):
+def LoopChecker(Session):
+	session = Session()
+	
 	curTime = datetime.datetime.now()
 	tasks = session.query(Task).filter(and_(Task.hasRan == False, Task.time < curTime))
 
 	print "Printing Tasks..."
 	for task in tasks:
 		print task
+		if task.action == "ON":
+			print "TURNING ON"
+		elif task.action == "OFF":
+			print "TURNING OFF"
+
+		session.delete(task)
+		session.commit()
+		session.close()
+
 
 def start():
 	engine = create_engine(SQLALCHEMY_DATABASE_URI, echo=True)
 	Session = sessionmaker()
 	Session.configure(bind=engine)
-	session = Session()
+
 	#t = session.query(Task).filter_by(hasRan=False).first() 
 
 	while True:
-		LoopChecker(session)
-		time.sleep(2)
+		LoopChecker(Session)
+		time.sleep(10)
 
 #import pdb; pdb.set_trace()
