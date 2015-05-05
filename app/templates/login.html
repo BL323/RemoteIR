@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<H4>Login Page</H4>
+
+<form action="/login" method="post" name="">
+
+	<div class="row">
+		<div class="input-field col s6">
+        	<input name="user_name" id="user_name" type="text" class="validate">
+         	<label for="user_name">Username</label>
+        </div>
+	</div>
+
+ 	<div class="row">
+        <div class="input-field col s12">
+          <input name="password" id="password" type="password" class="validate">
+          <label for="password">Password</label>
+        </div>
+     </div>
+
+	<p><input type="submit" value="Add Task"></p>
+
+</form>
+
+
+{% endblock %}
+

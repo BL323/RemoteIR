@@ -6,6 +6,7 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from threading import Thread
+import logging
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, '../app.db')
@@ -31,8 +32,12 @@ def LoopChecker(Session):
 		print task
 		if task.action == "ON":
 			print "TURNING ON"
+			logger.error('Scheduled Turn On')
+
 		elif task.action == "OFF":
 			print "TURNING OFF"
+			logger.error('Scheduled Turn Off')
+
 
 		session.delete(task)
 		session.commit()
@@ -40,6 +45,13 @@ def LoopChecker(Session):
 
 
 def start():
+	logger = logging.getLogger('myapp')
+	hdlr = logging.FileHandler('/var/tmp/RemoteIR.log')
+	formatter = logging.Formatter('%(asctime)s %(levelname)s %(message)s')
+	hdlr.setFormatter(formatter)
+	logger.addHandler(hdlr) 
+	logger.setLevel(logging.WARNING)
+
 	engine = create_engine(SQLALCHEMY_DATABASE_URI, echo=True)
 	Session = sessionmaker()
 	Session.configure(bind=engine)
